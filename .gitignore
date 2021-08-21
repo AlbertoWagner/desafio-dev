@@ -136,3 +136,4 @@ desafioDev/venv/*
 
 .idea/*
 .idea/desafioDev.iml
+desafioDev/.idea
