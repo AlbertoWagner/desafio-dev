@@ -33,3 +33,17 @@ class Transaction(models.Model):
         verbose_name = u'Transaction'
         verbose_name_plural = u'Transactions'
         db_table = 'transaction'
+
+    @property
+    def get_display_value(self):
+        if self.type.signal == choices.SUM:
+            return f'R$ {self.value :.2f}'
+        else:
+            return f'R$ - {self.value :.2f}'
+
+    @property
+    def get_display_status(self):
+        if self.type.signal == choices.SUM:
+            return 'breadcrumb-item table-success'
+        else:
+            return 'breadcrumb-item table-danger'
