@@ -126,6 +126,7 @@ venv.bak/
 dmypy.json
 
 # Pyre type checker
+.idea/*
 .pyre/
 /venv*
 .idea
@@ -134,6 +135,5 @@ dmypy.json
 /venv/*
 desafioDev/venv/*
 desafio-dev/.idea/*
-.idea/*
+
 .idea/desafioDev.iml
-desafioDev/.idea*
