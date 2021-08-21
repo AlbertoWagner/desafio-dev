@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lista de lojas
+{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'transactions:action' %}">Adicionar TXT</a></li>
+<li class="breadcrumb-item ">Lista de lojas </li>
+{% endblock %}
+
+{% block content %}
+
+<table class="table">
+    <thead class="thead-inverse">
+    <tr>
+        <th>Nome</th>
+        <th>Dono</th>
+        <th>Saldo</th>
+        <th>Totais de tranzações</th>
+        <th>Ações</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for store in object_list %}
+    <tr>
+        <td>{{ store.name }}</td>
+        <td>{{ store.store_owner }}</td>
+        <td class="{{ store.get_display_status }}" >{{ store.balance_display }}</td>
+        <td class="text-center">{{ store.transactions_count }}</td>
+        <th><a href="{% url 'transactions:transaction-list' store.pk %}" class="btn btn-primary">Tranzações</a>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
