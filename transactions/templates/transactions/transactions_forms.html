@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item ">Adicionar TXT </li>
+    <li class="breadcrumb-item"><a href="{% url 'store:store-list' %}">Lista de Lojas</a></li>
+
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'transactions:action' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token%}
+    {% for field in form %}
+        <div class="submit-link-row">{{ field.label_tag }} <br> {{ field }}</div>
+        {% if form.errors %}
+            {% for error in field.errors %}
+                <br>
+                <p class="error-message">
+                    <strong>{{ error|escape }}</strong>
+                </p>
+            {% endfor %}
+        {% endif %}
+        {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    {% endfor %}
+    <br>
+    <input class="btn-dark" type="submit" value="salvar">
+</form>
+
+{% endblock %}
+
+{% block stylesheet %}
+    <style>
+        strong  {
+            background-color: #f5c6cb;
+        }
+    </style>
+{% endblock %}

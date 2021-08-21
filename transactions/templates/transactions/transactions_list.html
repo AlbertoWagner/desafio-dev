@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+    Lista de tranzações
+{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'store:store-list' %}">Lista de lojas </a></li>
+    <li class="breadcrumb-item card-title"> Nome da loja : {{ store.name }}</li>
+    {% if store.balance  < 0 %}
+        <li class="breadcrumb-item table-danger"> Saldo em conta : {{ store.balance_display }} </li>
+    {% else %}
+        <li class="breadcrumb-item table-success"> Saldo em conta : {{ store.balance_display }} </li>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead class="thead-inverse">
+        <tr>
+            <th>Tipo</th>
+            <th>Cartão</th>
+            <th>CPF</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Valor</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for transactions in object_list %}
+            <tr>
+                <td>{{ transactions.type }}</td>
+                <td>{{ transactions.card }}</td>
+                <td>{{ transactions.cpf }}</td>
+                <td>{{ transactions.date|date:'d/m/Y' }}</td>
+                <td>{{ transactions.time |date:'H:i:s' }}</td>
+                <td class="{{ transactions.get_display_status }}" >{{ transactions.get_display_value }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
