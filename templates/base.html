@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Crude user{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Peralta" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    {% block stylesheet %}{% endblock %}
+</head>
+<body>
+{% block body %}
+<div class="wrapper">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'transactions:action' %}">TXT</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'store:store-list' %}">Lista de Lojas</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+            {% if messages %}
+                <ol class="breadcrumb my-4">
+
+                    <ul class="messages">
+                        {% if form.errors %}
+                            {% for error in form.errors %}
+                                <li  class="breadcrumb-item table-danger"><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                        {% endif %}
+                        {% for message in messages %}
+                            <li {% if message.tags == 'error' %}
+                                class="breadcrumb-item table-danger"
+                                {% else %}class="breadcrumb-item table-success"
+                                {% endif %}>{{ message }} </li>
+                        {% endfor %}
+                    </ul>
+                </ol>
+
+            {% endif %}
+        <ol class="breadcrumb my-4">
+            {% block breadcrumb %}
+            {% endblock %}
+        </ol>
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class="push"></div>
+</div>
+<footer>
+    <div class="container">
+    </div>
+</footer>
+{% endblock body %}
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+{% block javascript %}{% endblock %}
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42049022-13"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-42049022-13');</script>
+</body>
+</html>
