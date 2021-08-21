@@ -133,7 +133,7 @@ dmypy.json
 /desafioDev/venv
 /venv/*
 desafioDev/venv/*
-
+desafio-dev/.idea/*
 .idea/*
 .idea/desafioDev.iml
-desafioDev/.idea
+desafioDev/.idea*
