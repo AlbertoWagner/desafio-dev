@@ -17,9 +17,9 @@ class Stores(models.Model):
     @property
     def balance(self):
         from django.db.models import Sum
-        entrada = Transaction.objects.filter(store=self, type__signal=choices.SUM).aggregate(
+        entrada = Transaction.objects.filter(store=self, transactions_type__signal=choices.SUM).aggregate(
             total=Sum('value')).get('total', 0) or 0
-        saida = Transaction.objects.filter(store=self, type__signal=choices.SUBTRACTION).aggregate(
+        saida = Transaction.objects.filter(store=self, transactions_type__signal=choices.SUBTRACTION).aggregate(
             total=Sum('value')).get('total', 0) or 0
         return entrada - saida
 

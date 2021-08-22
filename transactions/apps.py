@@ -9,7 +9,8 @@ def create_types_all(sender, **kwargs):
     choices = [1, 2, 2, 1, 1, 1, 1, 1, 2]
 
     for index in range(len(description)):
-        TransactionType.objects.update_or_create(type=index + 1, description=description[index], nature=choices[index],
+        TransactionType.objects.update_or_create(type_transactions=index + 1, description=description[index],
+                                                 nature=choices[index],
                                                  signal=choices[index])
 
 

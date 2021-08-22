@@ -4,19 +4,19 @@ from transactions.validator import validaCpf
 
 
 class TransactionType(models.Model):
-    type = models.IntegerField()
+    type_transactions = models.IntegerField()
     description = models.CharField(max_length=120)
     nature = models.IntegerField(choices=choices.C_TRANSACTION)
     signal = models.IntegerField(choices=choices.C_SIGNAL)
 
     class Meta:
-        ordering = ['type']
+        ordering = ['type_transactions']
         verbose_name = u'Transaction type'
         verbose_name_plural = u'Transactions types'
         db_table = 'transaction_type'
 
     def __str__(self):
-        return f'Tipo : {self.type} {self.description}'
+        return f'Tipo : {self.type_transactions} {self.description}'
 
 
 class Transaction(models.Model):
@@ -25,8 +25,8 @@ class Transaction(models.Model):
     date = models.DateField()
     time = models.TimeField()
     card = models.CharField(max_length=120)
-    type = models.ForeignKey("transactions.TransactionType", on_delete=models.PROTECT, related_name="transactions")
     store = models.ForeignKey("store.Stores", on_delete=models.PROTECT, related_name="stores")
+    transactions_type = models.ForeignKey("transactions.TransactionType", on_delete=models.PROTECT, related_name="transactions")
 
     class Meta:
         ordering = ['date']
@@ -36,14 +36,14 @@ class Transaction(models.Model):
 
     @property
     def get_display_value(self):
-        if self.type.signal == choices.SUM:
+        if self.transactions_type.signal == choices.SUM:
             return f'R$ {self.value :.2f}'
         else:
             return f'R$ - {self.value :.2f}'
 
     @property
     def get_display_status(self):
-        if self.type.signal == choices.SUM:
+        if self.transactions_type.signal == choices.SUM:
             return 'breadcrumb-item table-success'
         else:
             return 'breadcrumb-item table-danger'

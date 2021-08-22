@@ -32,10 +32,10 @@ class TransactionFormView(CreateView):
                         texto = linha.decode('utf-8')
                         if texto != '\n':
                             data = dict()
-                            type = TransactionType.objects.get(type=texto[0])
+                            transactions_type = TransactionType.objects.get(type_transactions=texto[0])
                             store, create = Stores.objects.get_or_create(
                                 **{'store_owner': texto[48:62].strip(), 'name': texto[62:81].strip().replace('\n', '')})
-                            data['type_id'] = type.id
+                            data['transactions_type_id'] = transactions_type.id
                             data['date'] = datetime.datetime.strptime(f"{texto[1:5]}-{texto[5:7]}-{texto[7:9]}",
                                                                       '%Y-%d-%m').date()
                             data['value'] = float(texto[9:19]) / 100

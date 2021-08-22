@@ -28,7 +28,7 @@
         <tbody>
         {% for transactions in object_list %}
             <tr>
-                <td>{{ transactions.type }}</td>
+                <td>{{ transactions.transactions_type }}</td>
                 <td>{{ transactions.card }}</td>
                 <td>{{ transactions.cpf }}</td>
                 <td>{{ transactions.date|date:'d/m/Y' }}</td>
