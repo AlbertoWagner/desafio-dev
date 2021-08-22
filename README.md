@@ -14,6 +14,7 @@ Para iniciar o desenvolvimento, é necessário clonar o projeto do GitHub num di
 cd "diretorio de sua preferencia"
 git clone https://github.com/AlbertoWagner/desafio-dev.git
 cd desafio-dev/
+git checkout develop
 docker-compose up --build
 "O projeto estará disponível em "http://0.0.0.0:4000/
 "Para da o stop no projeto o comando é"
