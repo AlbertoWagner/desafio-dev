@@ -3,10 +3,10 @@ import os
 from django.urls import reverse
 from django.test import Client
 from django.test import TestCase
-from store.models import Stores
-
-from transactions.models import Transaction
 from django.conf import settings
+
+from store.models import Stores
+from transactions.models import Transaction
 
 BASE_DIR = settings.BASE_DIR
 DIR_CNAB = 'transactions/teste/arquivos/CNAB.txt'

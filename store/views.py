@@ -1,7 +1,5 @@
-
 from django.views.generic import ListView
 
-# Create your views here.
 from store.models import Stores
 
 
