@@ -21,7 +21,7 @@ class TransactionType(models.Model):
 
 class Transaction(models.Model):
     cpf = models.CharField(max_length=11, validators=[validaCpf])
-    value = models.IntegerField()
+    value = models.FloatField()
     date = models.DateField()
     time = models.TimeField()
     card = models.CharField(max_length=120)
