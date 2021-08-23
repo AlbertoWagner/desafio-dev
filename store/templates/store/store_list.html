@@ -29,7 +29,7 @@
         <td>{{ store.store_owner }}</td>
         <td class="{{ store.get_display_status }}" >{{ store.balance_display }}</td>
         <td class="text-center">{{ store.transactions_count }}</td>
-        <th><a href="{% url 'transactions:transaction-list' store.pk %}" class="btn btn-primary">Tranzações</a>
+        <th><a href="{% url 'transactions:transaction-list' store.pk %}" class="btn btn-primary">Transações</a>
     </tr>
     {% endfor %}
     </tbody>
