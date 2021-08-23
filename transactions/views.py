@@ -34,7 +34,7 @@ class TransactionFormView(CreateView):
                                 **{'store_owner': texto[48:62].strip(), 'name': texto[62:81].strip().replace('\n', '')})
                             data['transactions_type_id'] = transactions_type.id
                             data['date'] = datetime.datetime.strptime(f"{texto[1:5]}-{texto[5:7]}-{texto[7:9]}",
-                                                                      '%Y-%d-%m').date()
+                                                                      '%Y-%m-%d').date()
                             data['value'] = float(texto[9:19]) / 100
                             data['cpf'] = texto[19:30]
                             data['card'] = texto[30:42]
